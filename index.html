@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ishan Chopra — Finance & Project Advisory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #B8945A;
+    --gold-light: #D4AA72;
+    --ink: #0D0D0B;
+    --ink-mid: #3A3A38;
+    --ink-muted: #8A8A86;
+    --page: #F8F7F4;
+    --line: #E2E0DA;
+    --white: #FFFFFF;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--page);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 5vw;
+    background: rgba(248, 247, 244, 0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  nav.scrolled { border-color: var(--line); }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: flex-end;
+    padding: 0 5vw 8vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-watermark {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(-12deg);
+    font-family: var(--font-display);
+    font-size: clamp(10rem, 22vw, 22rem);
+    font-weight: 300;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(184, 148, 90, 0.12);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 2.5rem; height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 9vw, 9rem);
+    font-weight: 300;
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 2.5rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold);
+  }
+
+  .hero-tagline {
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    max-width: 560px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 0.2rem;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .hero-cta:hover { color: var(--gold); border-color: var(--gold); }
+  .hero-cta svg { transition: transform 0.2s; }
+  .hero-cta:hover svg { transform: translate(3px, -3px); }
+
+  .hero-stats {
+    position: absolute; right: 5vw; bottom: 8vh;
+    display: flex; flex-direction: column; gap: 2rem; text-align: right;
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-top: 0.2rem;
+  }
+
+  /* SECTIONS */
+  section { padding: 10rem 5vw; }
+  section + section { border-top: 1px solid var(--line); }
+
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::before {
+    content: '';
+    display: block; width: 2.5rem; height: 1px;
+    background: var(--gold);
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8vw;
+    align-items: start;
+  }
+
+  .about-headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .about-headline em { font-style: italic; color: var(--gold); }
+
+  .about-body {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.85;
+  }
+  .about-body p + p { margin-top: 1.5rem; }
+
+  .about-tags {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-top: 2.5rem;
+  }
+  .tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    border: 1px solid var(--line);
+    padding: 0.35rem 0.9rem;
+    border-radius: 100px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .tag:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+  }
+
+  .service-item {
+    padding: 3rem 2.5rem;
+    border-right: 1px solid var(--line);
+    transition: background 0.25s;
+    cursor: default;
+  }
+  .service-item:nth-child(3n) { border-right: none; }
+  .service-item:nth-child(n+4) { border-top: 1px solid var(--line); }
+  .service-item:hover { background: var(--white); }
+
+  .service-num {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .service-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .service-desc {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--ink-muted);
+    line-height: 1.75;
+  }
+
+  /* EXPERIENCE */
+  .timeline {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+  }
+
+  .timeline-left {
+    padding-right: 4rem;
+    border-right: 1px solid var(--line);
+  }
+
+  .timeline-sticky {
+    position: sticky;
+    top: 8rem;
+    padding-bottom: 2rem;
+  }
+
+  .timeline-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+  .timeline-heading em { font-style: italic; color: var(--gold); }
+
+  .timeline-right {
+    padding-left: 4rem;
+  }
+
+  .exp-item {
+    padding-bottom: 4rem;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 4rem;
+    position: relative;
+  }
+  .exp-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -4rem;
+    top: 0.55rem;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+    transform: translateX(-3.5px);
+  }
+
+  .exp-meta {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .exp-role {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+
+  .exp-company {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--ink-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.65rem;
+  }
+  .exp-bullets li {
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    display: flex; gap: 0.75rem;
+  }
+  .exp-bullets li::before {
+    content: '—';
+    color: var(--gold);
+    flex-shrink: 0;
+    font-weight: 300;
+  }
+
+  /* EDUCATION inline */
+  .edu-strip {
+    display: flex; gap: 3rem; flex-wrap: wrap;
+    margin-top: 5rem;
+    padding-top: 4rem;
+    border-top: 1px solid var(--line);
+  }
+  .edu-item {}
+  .edu-degree {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+  .edu-school {
+    font-size: 0.78rem;
+    font-weight: 300;
+    color: var(--ink-muted);
+    margin-bottom: 0.15rem;
+  }
+  .edu-year {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* CONTACT */
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8vw;
+    align-items: center;
+  }
+
+  .contact-headline {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 6rem);
+    font-weight: 300;
+    line-height: 1.0;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .contact-headline em { font-style: italic; color: var(--gold); }
+
+  .contact-detail {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-link {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 1rem;
+    margin-bottom: 2.5rem;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .contact-link:hover { color: var(--gold); border-color: var(--gold); }
+
+  .contact-location {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--ink-muted);
+    margin-top: 1rem;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem 5vw;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  footer p {
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    letter-spacing: 0.08em;
+  }
+  .footer-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .footer-links a {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    .about-grid, .contact-inner { grid-template-columns: 1fr; gap: 4rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .service-item { border-right: none; border-bottom: 1px solid var(--line); }
+    .service-item:last-child { border-bottom: none; }
+    .service-item:nth-child(n+4) { border-top: none; }
+    .timeline { grid-template-columns: 1fr; }
+    .timeline-left { border-right: none; border-bottom: 1px solid var(--line); padding-right: 0; padding-bottom: 3rem; margin-bottom: 3rem; }
+    .timeline-right { padding-left: 2rem; }
+    .exp-item::before { left: -2rem; }
+    .hero-stats { position: static; flex-direction: row; gap: 3rem; margin-top: 3rem; text-align: left; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">IC.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-watermark" aria-hidden="true">Finance</div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Finance &amp; Project Advisory</p>
+    <h1 class="hero-name">
+      Ishan<br>
+      <em>Chopra.</em>
+    </h1>
+    <p class="hero-tagline">
+      Helping businesses get their numbers right, their funding sorted, and their next steps clear.
+    </p>
+    <a href="#contact" class="hero-cta">
+      Start a conversation
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <p class="stat-num">3+</p>
+      <p class="stat-label">Years at<br>Founder's Office</p>
+    </div>
+    <div>
+      <p class="stat-num">10+</p>
+      <p class="stat-label">Project Finance<br>Mandates</p>
+    </div>
+    <div>
+      <p class="stat-num">CA</p>
+      <p class="stat-label">Finalist,<br>ICAI</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label reveal">About</p>
+  <div class="about-grid">
+    <div class="reveal">
+      <h2 class="about-headline">
+        Where numbers<br>meet<br><em>strategy.</em>
+      </h2>
+      <div class="about-tags">
+        <span class="tag">Project Finance</span>
+        <span class="tag">Fundraising</span>
+        <span class="tag">Financial Modelling</span>
+        <span class="tag">IPO Advisory</span>
+        <span class="tag">Startups</span>
+        <span class="tag">Sustainability</span>
+        <span class="tag">Tax Compliance</span>
+        <span class="tag">DPR Preparation</span>
+      </div>
+    </div>
+    <div class="about-body reveal">
+      <p>
+        I work at the intersection of finance, fundraising, and compliance — helping businesses translate ideas and operations into numbers that hold up under scrutiny.
+      </p>
+      <p>
+        My work includes building financial models and DPRs that support funding decisions, preparing investor documentation, and advising on funding strategy and structuring for startups and growing businesses alike.
+      </p>
+      <p>
+        I've also supported IPO preparation and compliance processes, and worked closely with senior officials at leading private and PSU banks to help move financing conversations forward. Beyond fundraising, I assess project feasibility and funding structures to help businesses make sound, well-informed decisions.
+      </p>
+      <p>
+        My foundation includes tax compliance, audit readiness, and internal controls — along with experience improving operational efficiency. Across all of this, my focus stays the same: helping businesses get their numbers right, their funding sorted, and their next steps clear.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <p class="section-label reveal">Services</p>
+  <div class="services-grid reveal">
+    <div class="service-item">
+      <p class="service-num">01</p>
+      <h3 class="service-title">Project Finance &amp; DPRs</h3>
+      <p class="service-desc">Detailed Project Reports and financial models built to enable funding decisions. Feasibility assessment and funding structure optimisation across industries.</p>
+    </div>
+    <div class="service-item">
+      <p class="service-num">02</p>
+      <h3 class="service-title">Startup Fundraising Advisory</h3>
+      <p class="service-desc">End-to-end support — from funding strategy and structuring to investor documentation, pitch decks, and liaising with private and PSU banks.</p>
+    </div>
+    <div class="service-item">
+      <p class="service-num">03</p>
+      <h3 class="service-title">IPO &amp; Compliance</h3>
+      <p class="service-desc">IPO preparation, statutory compliance, audit readiness, and internal control frameworks to keep businesses regulator-ready at every stage.</p>
+    </div>
+    <div class="service-item">
+      <p class="service-num">04</p>
+      <h3 class="service-title">Tax &amp; Financial Planning</h3>
+      <p class="service-desc">Income Tax Return filings, tax advisory, financial planning, and accounting to ensure accurate, timely, and compliant financial operations.</p>
+    </div>
+    <div class="service-item">
+      <p class="service-num">05</p>
+      <h3 class="service-title">Sustainability Reporting</h3>
+      <p class="service-desc">Carbon footprint analysis, ESG compliance reports, and carbon reduction strategies — including advisory for Government PSUs on neutrality.</p>
+    </div>
+    <div class="service-item">
+      <p class="service-num">06</p>
+      <h3 class="service-title">Financial Consulting</h3>
+      <p class="service-desc">Broad advisory across real estate, commercial lending, mortgage structuring, wealth management, and business valuation for informed decisions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label reveal">Experience</p>
+  <div class="timeline">
+    <div class="timeline-left">
+      <div class="timeline-sticky">
+        <h2 class="timeline-heading reveal">A track<br>record<br>built on<br><em>results.</em></h2>
+      </div>
+    </div>
+    <div class="timeline-right">
+
+      <div class="exp-item reveal">
+        <p class="exp-meta">Jul 2023 — Present &nbsp;·&nbsp; Full-time</p>
+        <h3 class="exp-role">Founder's Office</h3>
+        <p class="exp-company">D K Saklecha &amp; Company — Indore, India</p>
+        <ul class="exp-bullets">
+          <li>Enhanced accuracy and compliance of projected financial statements</li>
+          <li>Enabled funding decisions through DPRs and financial modelling</li>
+          <li>Advised startups on funding strategy, structuring, and investor documentation</li>
+          <li>Assisted in IPO preparation and compliance processes</li>
+          <li>Liaised with senior officials of leading private and PSU banks</li>
+          <li>Analysed redevelopment project basics and financial feasibility</li>
+          <li>Mitigated financial and regulatory risks through structured assessments</li>
+          <li>Delivered compliant carbon footprint and sustainability reports for a Government PSU</li>
+          <li>Ensured timely ITR filings, audit readiness, and internal control compliance</li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal">
+        <p class="exp-meta">Jun 2022 — Jun 2023 &nbsp;·&nbsp; Full-time</p>
+        <h3 class="exp-role">Data Research Analyst</h3>
+        <p class="exp-company">Morningstar — Mumbai, India</p>
+        <ul class="exp-bullets">
+          <li>Engaged in Portfolio Management Services across 40 Indian mutual fund companies</li>
+          <li>Evaluated fundamental data from Balance Sheets, Income Statements, and Footnotes of global companies</li>
+          <li>Reviewed and analysed portfolios of CIT, 529, Mutual Funds, Private Funds, and Separate Accounts from multiple countries</li>
+          <li>Processed Advance Portfolio Templates and Tripartite (TPT) files</li>
+          <li>Supported local data consultants on data consistency and quality assurance</li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal">
+        <p class="exp-meta">Dec 2020 — Feb 2021 &nbsp;·&nbsp; Internship</p>
+        <h3 class="exp-role">Finance Intern</h3>
+        <p class="exp-company">Madhya Pradesh Financial Corporation — Indore, India</p>
+        <ul class="exp-bullets">
+          <li>Conducted financial statement analysis and financial modelling</li>
+          <li>Understood credit rating parameters used for lending viability studies</li>
+          <li>Researched industries including Automobiles, Tourism, Real Estate, and Hospitality</li>
+          <li>Learnt disbursement, recovery processes, and aspects of project financing</li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal">
+        <p class="exp-meta">May 2019 — Jun 2019 &nbsp;·&nbsp; Internship</p>
+        <h3 class="exp-role">Finance Intern</h3>
+        <p class="exp-company">D K Saklecha &amp; Company — Indore, India</p>
+        <ul class="exp-bullets">
+          <li>Participated in audit engagements across various industries</li>
+          <li>Compiled trial balances, reconciled accounts, and prepared supporting schedules</li>
+          <li>Assisted in income tax return preparation for individuals and companies</li>
+          <li>Updated accounting records using Tally and prepared financial summaries</li>
+        </ul>
+      </div>
+
+      <div class="edu-strip reveal">
+        <div class="edu-item">
+          <p class="edu-degree">CA Finalist</p>
+          <p class="edu-school">Institute of Chartered Accountants of India</p>
+          <p class="edu-year">Sep 2024 — Present</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-degree">BBA — Finance</p>
+          <p class="edu-school">NMIMS (SVKM), Mumbai</p>
+          <p class="edu-year">Jun 2019 — Apr 2022 &nbsp;·&nbsp; CGPA 3.22</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-degree">Listing on Stock Exchange</p>
+          <p class="edu-school">NISM Certification</p>
+          <p class="edu-year">Issued Mar 2025</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label reveal">Contact</p>
+  <div class="contact-inner">
+    <h2 class="contact-headline reveal">
+      Let's<br>work<br><em>together.</em>
+    </h2>
+    <div class="reveal">
+      <p class="contact-detail">Email</p>
+      <a href="mailto:ishanchopra.27@yahoo.com" class="contact-link">ishanchopra.27@yahoo.com</a>
+
+      <p class="contact-detail">LinkedIn</p>
+      <a href="https://www.linkedin.com/in/ishanchopraa" target="_blank" class="contact-link">linkedin.com/in/ishanchopraa</a>
+
+      <p class="contact-location">Based in Indore, Madhya Pradesh, India.<br>Available for remote and pan-India engagements.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Ishan Chopra. All rights reserved.</p>
+  <ul class="footer-links">
+    <li><a href="#home">Top</a></li>
+    <li><a href="https://www.linkedin.com/in/ishanchopraa" target="_blank">LinkedIn</a></li>
+    <li><a href="mailto:ishanchopra.27@yahoo.com">Email</a></li>
+  </ul>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
