@@ -334,10 +334,19 @@ section { position: relative; z-index: 1; }
 .exp-points li::before { content: '\00b7'; color: var(--gold); flex-shrink: 0; font-size: 1.3rem; line-height: 1; }
 
 /* EDU & CERTS */
+.edu-section-head {
+  font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold-light); margin-top: 4rem; padding-top: 3.5rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: 0.9rem;
+}
+.edu-section-head::before {
+  content: ''; display: block; width: 2rem; height: 1px; background: var(--gold-light);
+}
 .edu-certs-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 1.5rem; margin-top: 4rem; padding-top: 3.5rem;
-  border-top: 1px solid var(--line);
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
 }
 .edu-card {
   background: rgba(255,255,255,0.06);
@@ -996,6 +1005,7 @@ footer p { font-size: 0.7rem; color: var(--ink-muted); letter-spacing: 0.07em; }
 
     </div><!-- end accordion -->
 
+        <div class="edu-section-head reveal">Education</div>
         <div class="edu-certs-grid reveal">
           <div class="edu-card">
             <p class="edu-card-type">Professional</p>
@@ -1014,13 +1024,6 @@ footer p { font-size: 0.7rem; color: var(--ink-muted); letter-spacing: 0.07em; }
             <p class="edu-card-title">Commerce</p>
             <p class="edu-card-sub">The Shishukunj International School, Indore</p>
             <p class="edu-card-year">Apr 2018 — Mar 2019 · 86.00%</p>
-          </div>
-          <div class="edu-card">
-            <p class="edu-card-type">Certification</p>
-            <p class="edu-card-title">Listing on Stock Exchange</p>
-            <p class="edu-card-sub">National Institute of Securities Markets (NISM)<br>
-            <span style="font-size:0.65rem; word-break:break-all; color:rgba(255,255,255,0.35);">ID: 2D0414B4B1EA-2D0414A6335E-759DAC6860</span></p>
-            <p class="edu-card-year">Issued Mar 2025</p>
           </div>
         </div>
 
@@ -1070,30 +1073,30 @@ footer p { font-size: 0.7rem; color: var(--ink-muted); letter-spacing: 0.07em; }
 
           <div class="form-grid">
             <div class="form-group">
-              <label class="form-label" for="fullName">Full Name <span aria-hidden="true">*</span></label>
-              <input class="form-input" type="text" id="fullName" name="full_name" placeholder="Rahul Sharma" required autocomplete="name">
+              <label class="form-label" for="fullName">Full Name<span aria-hidden="true">*</span></label>
+              <input class="form-input" type="text" id="fullName" name="full_name" placeholder="FULL NAME*" required autocomplete="name">
               <span class="field-error" id="err-name" role="alert">Please enter your full name.</span>
             </div>
             <div class="form-group">
-              <label class="form-label" for="company">Company Name</label>
-              <input class="form-input" type="text" id="company" name="company" placeholder="Acme Corp" autocomplete="organization">
+              <label class="form-label" for="company">Company Name<span aria-hidden="true">*</span></label>
+              <input class="form-input" type="text" id="company" name="company" placeholder="COMPANY NAME*" autocomplete="organization">
             </div>
             <div class="form-group">
               <label class="form-label" for="designation">Designation</label>
-              <input class="form-input" type="text" id="designation" name="designation" placeholder="CFO / Founder" autocomplete="organization-title">
+              <input class="form-input" type="text" id="designation" name="designation" placeholder="DESIGNATION" autocomplete="organization-title">
             </div>
             <div class="form-group">
               <label class="form-label" for="city">City</label>
-              <input class="form-input" type="text" id="city" name="city" placeholder="Mumbai" autocomplete="address-level2">
+              <input class="form-input" type="text" id="city" name="city" placeholder="CITY" autocomplete="address-level2">
             </div>
             <div class="form-group full">
-              <label class="form-label" for="email">Your Email <span aria-hidden="true">*</span></label>
-              <input class="form-input" type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
+              <label class="form-label" for="email">Your Email<span aria-hidden="true">*</span></label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="YOUR EMAIL*" required autocomplete="email">
               <span class="field-error" id="err-email" role="alert">Please enter a valid email address.</span>
             </div>
             <div class="form-group full">
-              <label class="form-label" for="message">How can I help? <span aria-hidden="true">*</span></label>
-              <textarea class="form-textarea" id="message" name="message" placeholder="Tell me about your project, requirement, or challenge…" required></textarea>
+              <label class="form-label" for="message">How can I help?<span aria-hidden="true">*</span></label>
+              <textarea class="form-textarea" id="message" name="message" placeholder="HOW CAN I HELP?*" required></textarea>
               <span class="field-error" id="err-message" role="alert">Please enter your message.</span>
             </div>
           </div>
